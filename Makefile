@@ -8,7 +8,8 @@
 NAME	=	my_defender
 
 SRC		=	main.c \
-			scr/display.c
+			scr/display.c \
+			scr/cmp.c
 
 OBJ		=	$(SRC:.c=.o)
 
