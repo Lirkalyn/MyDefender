@@ -12,29 +12,36 @@
 #include <unistd.h>
 #include "include/my.h"
 
+#include <stdio.h>
+
 void game(sfRenderWindow* window)
 {
-    int x = 0;
-    int y = 0;
+//    int x_y[2] = {[0 ... 1] = 0};
     sfEvent event;
     sfTexture* map = sfTexture_createFromFile("Picture/map (copie).jpg", NULL);
-//    sfTexture* map = sfTexture_createFromFile("Picture/map.jpg", NULL); map (copie).jpg
+//    sfTexture* map = sfTexture_createFromFile("Picture/map.jpg", NULL);
     sfSprite* background = sfSprite_create();
 
     while (sfRenderWindow_pollEvent(window, &event)) {
-        if (event.type == sfEvtMouseButtonPressed
+/*        if (event.type == sfEvtMouseButtonPressed
             && event.type != sfEvtClosed) {
-            x = sfMouse_getPositionRenderWindow(window).x;
-            y = sfMouse_getPositionRenderWindow(window).y;
-//            printf("x = %d et y = %d\n", x, y);
+//            x_y[0] = sfMouse_getPositionRenderWindow(window).x;
+//            x_y[1] = sfMouse_getPositionRenderWindow(window).y;
+            x_y[0] = sfMouse_getPosition(window).x;
+            x_y[1] = sfMouse_getPosition(window).y;
+            if ((x_y[0] >= 168 && x_y[0] <= 295) && (x_y[1] >= 394 && x_y[1] <= 470))
+                myputstr("c'est 1\n", 0);
+            else
+                myputstr("c'est pas 1\n", 0);
+//            printf("x = %d et y = %d\n", x_y[0], x_y[1]);
         }
-        else if (event.type == sfEvtClosed)
+        else */if (event.type == sfEvtClosed)
             sfRenderWindow_close(window);
     }
     sfSprite_setTexture(background, map, sfTrue);
     sfRenderWindow_drawSprite(window, background, NULL);
     sfRenderWindow_display(window);
-    sfRenderWindow_clear(window, sfBlack);
+//    sfRenderWindow_clear(window, sfBlack);
 }
 
 void start_game(void)
@@ -43,10 +50,10 @@ void start_game(void)
     sfRenderWindow* window;
 
     window = sfRenderWindow_create(mode, "defender", sfResize | sfClose, NULL);
-//    sfRenderWindow_setFramerateLimit(window, 60);
-//    while (sfRenderWindow_isOpen(window))
-//        game(window);
-//    sfRenderWindow_destroy(window);
+    sfRenderWindow_setFramerateLimit(window, 30);
+    while (sfRenderWindow_isOpen(window))
+        game(window);
+    sfRenderWindow_destroy(window);
 }
 
 int main(int argc, char *argv[])
