@@ -5,6 +5,9 @@
 ## Makefile
 ##
 
+#.PHONY : clean fclean re
+.PHONY	:	$(NAME) clean fclean re
+
 NAME	=	my_defender
 
 SRC		=	main.c \
@@ -12,8 +15,6 @@ SRC		=	main.c \
 			scr/cmp.c
 
 OBJ		=	$(SRC:.c=.o)
-
-all		:	$(NAME)
 
 $(NAME)	:	$(OBJ)
 			gcc $(OBJ) -o $(NAME) -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -Wall -Wextra
@@ -26,4 +27,4 @@ fclean	:	clean
 
 re		:	fclean $(NAME)
 
-.PHONY	:	all $(NAME) clean fclean re
+#.PHONY	:	all $(NAME) clean fclean re
