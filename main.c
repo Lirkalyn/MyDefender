@@ -5,14 +5,27 @@
 ** main of my_runner
 */
 
-#include <SFML/Graphics.h>
-#include <SFML/Audio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <unistd.h>
 #include "include/my.h"
 
 #include <stdio.h>
+
+int set_Clock_pos(sfVector2f i)
+{
+    sfClock *clock;
+    sfTime time;
+    float seconds; 
+
+    clock = sfClock_create();
+    while (1) {
+        time = sfClock_getElapsedTime(clock);
+        seconds = time.microseconds / 1000000.0;
+        if (seconds > 0.085) {
+            i.x += 7;
+            sfClock_restart(clock);
+            return (i.x);
+        }
+    }
+}
 
 int interaction(int *x_y)
 {
@@ -37,29 +50,38 @@ int interaction(int *x_y)
     return rsl;
 }
 
-void game(sfRenderWindow* window, sfSprite* bg)
+void game(sfRenderWindow* window, sfSprite* bg, sfTexture* enemy, sfSprite* en)
 {
     int x_y[3] = {[0 ... 2] = 0};
     sfEvent event;
+    sfIntRect rect_en = set_rect_en(rect_en);
+    sfVector2f i = set_i(i);
 
-    while (sfRenderWindow_pollEvent(window, &event)) {
-        if (event.type == sfEvtMouseButtonPressed
-            && event.type != sfEvtClosed) {
-            x_y[0] = sfMouse_getPositionRenderWindow(window).x;
-            x_y[1] = sfMouse_getPositionRenderWindow(window).y;
-            x_y[2] = interaction(x_y);
-            printf("c'est %d\n", x_y[2]);
-/*            else {
-                myputstr("c'est pas 1\n", 0);
-                printf("x = %d et y = %d\n", x_y[0], x_y[1]);
-            }*/
+    while (sfRenderWindow_isOpen(window)) {
+        while (sfRenderWindow_pollEvent(window, &event)) {
+            if (event.type == sfEvtMouseButtonPressed
+                && event.type != sfEvtClosed) {
+                x_y[0] = sfMouse_getPositionRenderWindow(window).x;
+                x_y[1] = sfMouse_getPositionRenderWindow(window).y;
+                x_y[2] = interaction(x_y);
+                printf("c'est %d\n", x_y[2]);
+    /*            else {
+                    myputstr("c'est pas 1\n", 0);
+                    printf("x = %d et y = %d\n", x_y[0], x_y[1]);
+                }*/
+            }
+            else if (event.type == sfEvtClosed)
+                sfRenderWindow_close(window);
         }
-        else if (event.type == sfEvtClosed)
-            sfRenderWindow_close(window);
+        sfSprite_setTextureRect(en, rect_en);
+        sfSprite_setPosition(en, i);
+        sfRenderWindow_drawSprite(window, bg, NULL);
+        sfRenderWindow_drawSprite(window, en, NULL);
+        sfRenderWindow_display(window);
+        sfRenderWindow_clear(window, sfBlack);
+        i.x = set_Clock_pos(i);
+        rect_en.left = set_Clock_ani(rect_en);
     }
-    sfRenderWindow_drawSprite(window, bg, NULL);
-    sfRenderWindow_display(window);
-    sfRenderWindow_clear(window, sfBlack);
 }
 
 void start_game(void)
@@ -68,13 +90,15 @@ void start_game(void)
     sfRenderWindow* window;
 //    sfTexture* map = sfTexture_createFromFile("Picture/map (copie).jpg", NULL);
     sfTexture* map = sfTexture_createFromFile("Picture/map.jpg", NULL);
+    sfTexture* enemy = sfTexture_createFromFile("Picture/R_W_Enemy.png", NULL);
     sfSprite* bg = sfSprite_create();
+    sfSprite* en = sfSprite_create();
 
     window = sfRenderWindow_create(mode, "defender", sfResize | sfClose, NULL);
     sfRenderWindow_setFramerateLimit(window, 30);
     sfSprite_setTexture(bg, map, sfTrue);
-    while (sfRenderWindow_isOpen(window))
-        game(window, bg);
+    sfSprite_setTexture(en, enemy, sfTrue);
+    game(window, bg, enemy, en);
     sfRenderWindow_destroy(window);
 }
 
