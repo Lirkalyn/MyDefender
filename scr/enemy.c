@@ -16,6 +16,7 @@ en *fill_en(en *enem, sfTexture* enemy, int opt)
             sfSprite_setTexture(enem[j].en, enemy, sfTrue);
             enem[j].rect_en = set_rect_en(enem[j].rect_en);
             enem[j].i = set_i(enem[j].i, j);
+            enem[j].lp = 20;
         }
     }
     if (opt == 1)
@@ -23,7 +24,5 @@ en *fill_en(en *enem, sfTexture* enemy, int opt)
         sfSprite_setTextureRect(enem[j].en, enem[j].rect_en);
         sfSprite_setPosition(enem[j].en, enem[j].i);
     }
-    if (opt == 2)
-        enem = set_Clock_pos(enem);
     return enem;
 }

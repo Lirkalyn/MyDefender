@@ -9,6 +9,26 @@
 
 #include <stdio.h>
 
+en follow_path(en enem, int i)
+{
+    static int step = 0;
+
+    if (enem.i.x <= (350 + (i * 10)))
+        enem.i.x += 7;
+    if (enem.i.x > (350 + (i * 10)) && enem.i.y > (340 - (i * 10))
+            && step == 0)
+        enem.i.y -= 7;
+    if (enem.i.y <= (340 - (i * 10)) && enem.i.x <= (1160 + (i * 10)))
+        enem.i.x += 7;
+    if (enem.i.x > (1160 + (i * 10)) && enem.i.y < (850 + (i * 10))) {
+        step += 1;
+        enem.i.y += 7;
+    }
+    if (enem.i.x > (1160 + (i * 10)) && enem.i.y >= (850 + (i * 10)))
+        enem.i.x += 7;
+    return enem;
+}
+
 en *set_Clock_pos(en *enem)
 {
     sfClock *clock;
@@ -22,7 +42,7 @@ en *set_Clock_pos(en *enem)
         seconds = time.microseconds / 1000000.0;
         if (seconds > 0.085) {
             for (int i = 0; i < 10; i++) {
-                enem[i].i.x += 7;
+                enem[i] = follow_path(enem[i], i);
                 enem[i].rect_en.left += (cpt == 1) ? (-40) : 40;
             }
             cpt += (cpt == 1) ? (-1) : 1;
@@ -49,7 +69,6 @@ void game(sfRenderWindow* window, sfSprite* bg, en *enem)
         sfRenderWindow_display(window);
         sfRenderWindow_clear(window, sfBlack);
         enem = set_Clock_pos(enem);
-//        enem = fill_en(enem, NULL, 2);
     }
 }
 

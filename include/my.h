@@ -35,12 +35,10 @@ int my_put_nbr(int nb);
 int str_cmp(char const *s1, char const *s2);
 sfIntRect set_rect_en(sfIntRect rect_en);
 sfVector2f set_i(sfVector2f i, int j);
-//int set_Clock_ani(sfIntRect rect);
 en *set_Clock_ani(en *enem);
 int mouse(sfRenderWindow* window, sfVector2u w_size);
 struct Pos *fill(sfVector2u w_size);
 en *fill_en(en *enem, sfTexture* enemy, int opt);
 en *set_Clock_pos(en *enem);
-//int set_Clock_pos(sfVector2f i);
 
 #endif
