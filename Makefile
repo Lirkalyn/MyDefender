@@ -12,7 +12,10 @@ NAME	=	my_defender
 
 SRC		=	main.c \
 			scr/display.c \
-			scr/cmp.c
+			scr/cmp.c \
+			scr/interaction.c \
+			scr/fill.c \
+			scr/enemy.c
 
 OBJ		=	$(SRC:.c=.o)
 

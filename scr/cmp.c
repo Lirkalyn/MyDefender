@@ -26,10 +26,10 @@ sfIntRect set_rect_en(sfIntRect rect_en)
     return (rect_en);
 }
 
-sfVector2f set_i(sfVector2f i)
+sfVector2f set_i(sfVector2f i, int j)
 {
     i.x = 0;
-    i.y = 600;
+    i.y = (525 + (j * 10));
     return (i);
 }
 
@@ -48,20 +48,21 @@ int move_rect(sfIntRect rect)
     return (rect.left);
 }
 
-int set_Clock_ani(sfIntRect rect)
+en *set_Clock_ani(en *enem)
 {
     sfClock *clock;
     sfTime time;
-    float seconds; 
+    float seconds;
 
     clock = sfClock_create();
     while (1) {
         time = sfClock_getElapsedTime(clock);
         seconds = time.microseconds / 1000000.0;
         if (seconds > 0.085) {
-            rect.left = move_rect(rect);
+            for (int i = 0; i < 10; i++)
+                enem[i].rect_en.left = move_rect(enem[i].rect_en);
             sfClock_restart(clock);
-            return (rect.left);
+            return enem;
         }
     }
 }
