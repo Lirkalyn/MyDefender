@@ -56,16 +56,19 @@ void game(sfRenderWindow* window, sfSprite* bg, en *enem, tow *towe)
 {
     sfVector2u w_size;
     int mous = 0;
+    int towe_nb = 3;
 
     while (sfRenderWindow_isOpen(window)) {
         w_size = sfRenderWindow_getSize(window);
         mous = mouse(window, w_size);
         enem = fill_en(enem, NULL, 1);
-//        printf("ok = %d\n", ok);
+//        printf("mous = %d\n", mous);
+        if (mous >= 6 && mous <= 8)
+            towe = place_tower(towe, mous, &towe_nb, window);
 //        printf("hei = %d et wid = %d\n", w_size.x, w_size.y);
         sfRenderWindow_drawSprite(window, bg, NULL);
-//        sfRenderWindow_drawCircleShape(window, shape, NULL);
-        sfRenderWindow_drawSprite(window, towe[0].spr, NULL);
+        for (int i = 0; i < towe_nb; i++)
+            sfRenderWindow_drawSprite(window, towe[i].spr, NULL);
         for (int i = 0; i < 10; i++)
             sfRenderWindow_drawSprite(window, enem[i].en, NULL);
         sfRenderWindow_display(window);
