@@ -59,5 +59,7 @@ sfVector2f fire_pos(sfVector2f pos, int where);
 sfVector2f ice_pos(sfVector2f pos, int where);
 tow *hit_box_maker(tow *towe, int *mem);
 void draw(sfRenderWindow* window, int towe_nb, en *enem, tow *towe);
+int pause_menu(sfRenderWindow* window);
+void start_game(sfRenderWindow* window, sfTexture* map, int rep);
 
 #endif

@@ -20,7 +20,8 @@ SRC		=	main.c \
 			scr/tower_2.c \
 			scr/tower_3.c \
 			scr/menu.c \
-			scr/draw.c
+			scr/draw.c \
+			scr/pause.c
 
 OBJ		=	$(SRC:.c=.o)
 

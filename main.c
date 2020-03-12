@@ -60,6 +60,7 @@ void game(sfRenderWindow* window, sfSprite* bg, en *enem, tow *towe)
 
     while (sfRenderWindow_isOpen(window)) {
         w_size = sfRenderWindow_getSize(window);
+        //pause_menu(window);
         mous = mouse(window, w_size);
         enem = fill_en(enem, NULL, 1);
 //        printf("mous = %d\n", mous);
@@ -74,16 +75,13 @@ void game(sfRenderWindow* window, sfSprite* bg, en *enem, tow *towe)
     }
 }
 
-void start_game(sfRenderWindow* window, sfTexture* map)
+void start_game(sfRenderWindow* window, sfTexture* map, int rep)
 {
-    sfTexture* menu = sfTexture_createFromFile("Picture/Menu.png", NULL);
-    sfSprite* me = sfSprite_create();
 //    sfTexture* map = sfTexture_createFromFile("Picture/map.jpg", NULL);
     sfTexture* enemy = sfTexture_createFromFile("Picture/R_W_Enemy.png", NULL);
     sfSprite* bg = sfSprite_create();
     en *enem;
     tow *towe;
-    int rep = touch_menu(window, menu, me);
 
     if (rep == 1) {
     sfRenderWindow_setFramerateLimit(window, 30);
@@ -104,7 +102,11 @@ int main(int argc, char *argv[])
     sfVideoMode mode = {1920, 1080, 32};
     sfRenderWindow* window;
     sfTexture* map = sfTexture_createFromFile("Picture/map (copie).jpg", NULL);
+    sfTexture* menu = sfTexture_createFromFile("Picture/Menu.png", NULL);
+    sfSprite* me = sfSprite_create();
+    int rep;
 
     window = sfRenderWindow_create(mode, "defender", sfResize | sfClose, NULL);
-    start_game(window, map);
+    rep = touch_menu(window, menu, me);
+    start_game(window, map, rep);
 }
