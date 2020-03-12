@@ -15,7 +15,9 @@ SRC		=	main.c \
 			scr/cmp.c \
 			scr/interaction.c \
 			scr/fill.c \
-			scr/enemy.c
+			scr/enemy.c \
+			scr/tower.c \
+			scr/tower_2.c
 
 OBJ		=	$(SRC:.c=.o)
 

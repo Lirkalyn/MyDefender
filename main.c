@@ -52,7 +52,7 @@ en *set_Clock_pos(en *enem)
     }
 }
 
-void game(sfRenderWindow* window, sfSprite* bg, en *enem)
+void game(sfRenderWindow* window, sfSprite* bg, en *enem, tow *towe)
 {
     sfVector2u w_size;
     int mous = 0;
@@ -64,6 +64,8 @@ void game(sfRenderWindow* window, sfSprite* bg, en *enem)
 //        printf("ok = %d\n", ok);
 //        printf("hei = %d et wid = %d\n", w_size.x, w_size.y);
         sfRenderWindow_drawSprite(window, bg, NULL);
+//        sfRenderWindow_drawCircleShape(window, shape, NULL);
+        sfRenderWindow_drawSprite(window, towe[0].spr, NULL);
         for (int i = 0; i < 10; i++)
             sfRenderWindow_drawSprite(window, enem[i].en, NULL);
         sfRenderWindow_display(window);
@@ -76,17 +78,19 @@ void start_game(void)
 {
     sfVideoMode mode = {1920, 1080, 32};
     sfRenderWindow* window;
-//    sfTexture* map = sfTexture_createFromFile("Picture/map (copie).jpg", NULL);
-    sfTexture* map = sfTexture_createFromFile("Picture/map.jpg", NULL);
+    sfTexture* map = sfTexture_createFromFile("Picture/map (copie).jpg", NULL);
+//    sfTexture* map = sfTexture_createFromFile("Picture/map.jpg", NULL);
     sfTexture* enemy = sfTexture_createFromFile("Picture/R_W_Enemy.png", NULL);
     sfSprite* bg = sfSprite_create();
     en *enem;
+    tow *towe;
 
     window = sfRenderWindow_create(mode, "defender", sfResize | sfClose, NULL);
     sfRenderWindow_setFramerateLimit(window, 30);
     sfSprite_setTexture(bg, map, sfTrue);
     enem = fill_en(enem, enemy, 0);
-    game(window, bg, enem);
+    towe = fill_tower(towe);
+    game(window, bg, enem, towe);
     sfRenderWindow_destroy(window);
 }
 
