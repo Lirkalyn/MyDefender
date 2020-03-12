@@ -56,5 +56,6 @@ en *set_Clock_pos(en *enem);
 tow *fill_tower(tow *towe);
 sfVector2f set_pos(sfVector2f i, int opt);
 tow *place_tower(tow *towe, int tow, int *towe_nb, sfRenderWindow* window);
+int touch_menu(sfRenderWindow* window, sfTexture* menu, sfSprite* me);
 
 #endif
