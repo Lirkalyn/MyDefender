@@ -26,12 +26,16 @@ sfVector2f set_pos(sfVector2f i, int opt)
 
 tow *place_tower_filler(tow *towe, int tow, int where, int *mem)
 {
+    towe[*mem].spr = sfSprite_create();
+    sfSprite_setTexture(towe[*mem].spr, towe[(tow - 6)].tex, sfTrue);
     towe[*mem].damage = towe[(tow - 6)].damage;
-    towe[*mem].spr = towe[(tow - 6)].spr;
     towe[*mem].rect_spr = towe[(tow - 6)].rect_spr;
     towe[*mem].shape = towe[(tow - 6)].shape;
-    towe[*mem].pos.x = 0;
-    towe[*mem].pos.y = 0;
+    if ((tow - 6) == 0)
+        towe[*mem].pos = fire_pos(towe[*mem].pos, where);
+    else
+        towe[*mem].pos = ice_pos(towe[*mem].pos, where);
+    towe = hit_box_maker(towe, mem);
     sfSprite_setTextureRect(towe[*mem].spr, towe[*mem].rect_spr);
     sfSprite_setPosition(towe[*mem].spr, towe[*mem].pos);
     *mem += 1;

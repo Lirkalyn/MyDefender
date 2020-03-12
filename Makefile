@@ -18,7 +18,9 @@ SRC		=	main.c \
 			scr/enemy.c \
 			scr/tower.c \
 			scr/tower_2.c \
-			scr/menu.c
+			scr/tower_3.c \
+			scr/menu.c \
+			scr/draw.c
 
 OBJ		=	$(SRC:.c=.o)
 

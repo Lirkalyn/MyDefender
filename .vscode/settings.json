@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "racket": "racket",
-        "my.h": "c"
+        "my.h": "c",
+        "random": "c",
+        "sstream": "c"
     }
 }

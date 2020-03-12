@@ -67,10 +67,7 @@ void game(sfRenderWindow* window, sfSprite* bg, en *enem, tow *towe)
             towe = place_tower(towe, mous, &towe_nb, window);
 //        printf("hei = %d et wid = %d\n", w_size.x, w_size.y);
         sfRenderWindow_drawSprite(window, bg, NULL);
-        for (int i = 0; i < towe_nb; i++)
-            sfRenderWindow_drawSprite(window, towe[i].spr, NULL);
-        for (int i = 0; i < 10; i++)
-            sfRenderWindow_drawSprite(window, enem[i].en, NULL);
+        draw(window, towe_nb, enem, towe);
         sfRenderWindow_display(window);
         sfRenderWindow_clear(window, sfBlack);
         enem = set_Clock_pos(enem);

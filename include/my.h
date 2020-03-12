@@ -36,9 +36,7 @@ typedef struct Tower {
     int damage;
     sfCircleShape *shape;
     sfVector2f hit_pos;
-    sfTexture* tex_f;
-    sfTexture* tex_i;
-    sfTexture* tex_o;
+    sfTexture* tex;
 } tow;
 
 void my_putchar(char c);
@@ -57,5 +55,9 @@ tow *fill_tower(tow *towe);
 sfVector2f set_pos(sfVector2f i, int opt);
 tow *place_tower(tow *towe, int tow, int *towe_nb, sfRenderWindow* window);
 int touch_menu(sfRenderWindow* window, sfTexture* menu, sfSprite* me);
+sfVector2f fire_pos(sfVector2f pos, int where);
+sfVector2f ice_pos(sfVector2f pos, int where);
+tow *hit_box_maker(tow *towe, int *mem);
+void draw(sfRenderWindow* window, int towe_nb, en *enem, tow *towe);
 
 #endif

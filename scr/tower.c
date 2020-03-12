@@ -42,6 +42,7 @@ tow *fill_first(tow *towe, sfTexture* tex_f)
     towe[0].hit_pos.y = 0;
     sfCircleShape_setPosition(towe[0].shape, towe[0].hit_pos);
     sfCircleShape_setRadius(towe[0].shape, 50);
+    towe[0].tex = tex_f;
     return towe;
 }
 
@@ -61,6 +62,7 @@ tow *fill_second(tow *towe, sfTexture* tex_i)
     towe[1].hit_pos.y = 0;
     sfCircleShape_setPosition(towe[1].shape, towe[1].hit_pos);
     sfCircleShape_setRadius(towe[1].shape, 50);
+    towe[1].tex = tex_i;
     return towe;
 }
 
@@ -80,6 +82,7 @@ tow *fill_last(tow *towe, sfTexture* tex_o)
     towe[2].hit_pos.y = 0;
     sfCircleShape_setPosition(towe[2].shape, towe[2].hit_pos);
     sfCircleShape_setRadius(towe[2].shape, 50);
+    towe[2].tex = tex_o;
     return towe;
 }
 
@@ -89,10 +92,7 @@ tow *fill_tower(tow *towe)
     sfTexture* tex_i = sfTexture_createFromFile("Picture/i_t.png", NULL);
     sfTexture* tex_o = sfTexture_createFromFile("Picture/i_t.png", NULL);
 
-    towe = malloc(11 * sizeof(en));
-    towe[10].tex_f = tex_f;
-    towe[10].tex_i = tex_i;
-    towe[10].tex_o = tex_o;
+    towe = malloc(10 * sizeof(tow));
     towe = fill_first(towe, tex_f);
     towe = fill_second(towe, tex_i);
     towe = fill_last(towe, tex_o);

@@ -52,3 +52,42 @@ a:x = 1673 et y = 44
 b:x = 1784 et y = 45
 c:x = 1673 et y = 191
 d:x = 1784 et y = 191
+
+
+
+
+
+
+
+
+
+
+F1 = towe[*mem].pos.x = 195;
+     towe[*mem].pos.y = 325;
+
+F2 = towe[*mem].pos.x = 550;
+     towe[*mem].pos.y = 320;
+
+F3 = towe[*mem].pos.x = 995;
+     towe[*mem].pos.y = 325;
+
+F4 = towe[*mem].pos.x = 1020;
+     towe[*mem].pos.y = 845;
+
+F5 = towe[*mem].pos.x = 1380;
+     towe[*mem].pos.y = 650;
+
+G1 = towe[*mem].pos.x = 185;
+     towe[*mem].pos.y = 325;
+
+G2 = towe[*mem].pos.x = 540;
+     towe[*mem].pos.y = 320;
+
+G3 = towe[*mem].pos.x = 985;
+     towe[*mem].pos.y = 325;
+
+G4 = towe[*mem].pos.x = 1010;
+     towe[*mem].pos.y = 845;
+
+G5 = towe[*mem].pos.x = 1370;
+     towe[*mem].pos.y = 650;
