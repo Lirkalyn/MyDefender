@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include <math.h>
 
 struct Pos {
     int a;
@@ -46,12 +47,11 @@ int my_put_nbr(int nb);
 int str_cmp(char const *s1, char const *s2);
 sfIntRect set_rect_en(sfIntRect rect_en);
 sfVector2f set_i(sfVector2f i, int j);
-en *set_Clock_ani(en *enem);
+//en *set_Clock_ani(en *enem);
 int mouse(sfRenderWindow* window, sfVector2u w_size);
 struct Pos *fill(sfVector2u w_size);
 en *fill_en(en *enem, sfTexture* enemy, int opt);
 en *set_Clock_pos(en *enem, int opt);
-//en *set_Clock_pos(en *enem);
 tow *fill_tower(tow *towe);
 sfVector2f set_pos(sfVector2f i, int opt);
 tow *place_tower(tow *towe, int tow, int *towe_nb, sfRenderWindow* window);
@@ -61,8 +61,7 @@ sfVector2f ice_pos(sfVector2f pos, int where);
 tow *hit_box_maker(tow *towe, int *mem);
 void draw(sfRenderWindow* window, int towe_nb, en *enem, tow *towe);
 int pause_menu(sfRenderWindow* window);
-//void start_game(sfRenderWindow* window, sfTexture* map, int rep);
-//void make_pause_menu(sfRenderWindow* window, int *x_y);
 int make_pause_menu(sfRenderWindow* window, int *x_y);
+void get_hit(tow *towe, en *enem, int nb_tower, int nb_enemy);
 
 #endif

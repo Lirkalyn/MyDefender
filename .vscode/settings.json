@@ -3,6 +3,7 @@
         "racket": "racket",
         "my.h": "c",
         "random": "c",
-        "sstream": "c"
+        "sstream": "c",
+        "cmath": "c"
     }
 }

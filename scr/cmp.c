@@ -33,7 +33,7 @@ sfVector2f set_i(sfVector2f i, int j)
     return (i);
 }
 
-int move_rect(sfIntRect rect)
+/*int move_rect(sfIntRect rect)
 {
     static int cpt = 0;
 
@@ -46,9 +46,9 @@ int move_rect(sfIntRect rect)
         cpt += 1;
     }
     return (rect.left);
-}
+}*/
 
-en *set_Clock_ani(en *enem)
+/*en *set_Clock_ani(en *enem)
 {
     sfClock *clock;
     sfTime time;
@@ -65,4 +65,4 @@ en *set_Clock_ani(en *enem)
             return enem;
         }
     }
-}
+}*/

@@ -31,10 +31,14 @@ tow *place_tower_filler(tow *towe, int tow, int where, int *mem)
     towe[*mem].damage = towe[(tow - 6)].damage;
     towe[*mem].rect_spr = towe[(tow - 6)].rect_spr;
     towe[*mem].shape = towe[(tow - 6)].shape;
-    if ((tow - 6) == 0)
+    if ((tow - 6) == 0) {
         towe[*mem].pos = fire_pos(towe[*mem].pos, where);
-    else
+        towe[*mem].which = 1;
+    }
+    else {
         towe[*mem].pos = ice_pos(towe[*mem].pos, where);
+        towe[*mem].which = 2;
+    }
     towe = hit_box_maker(towe, mem);
     sfSprite_setTextureRect(towe[*mem].spr, towe[*mem].rect_spr);
     sfSprite_setPosition(towe[*mem].spr, towe[*mem].pos);

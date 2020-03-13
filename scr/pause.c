@@ -47,29 +47,6 @@ int menu_pause(int *x_y, sfRenderWindow* window)
     return 0;
 }
 
-/*void check_pause(int x_y, sfRenderWindow* window)
-{
-    sfTexture* map = sfTexture_createFromFile("Picture/map (copie).jpg", NULL);
-    sfTexture* menu = sfTexture_createFromFile("Picture/Menu.png", NULL);
-    sfSprite* me = sfSprite_create();
-    int rep = 1;
-
-    if (x_y == 1) {
-        sfSprite_destroy(me);
-        sfTexture_destroy(menu);
-        sfTexture_destroy(map);
-    }
-    if (x_y == 2) {
-        sfSprite_destroy(me);
-        sfTexture_destroy(menu);
-        start_game(window, map, rep);
-    }
-    if (x_y == 3) {
-        rep = touch_menu(window, menu, me);
-        start_game(window, map, rep);
-    }
-}*/
-
 sfSprite *pa_maker(void)
 {
     sfTexture* pause = sfTexture_createFromFile("Picture/pause_2.jpg", NULL);
@@ -95,7 +72,6 @@ int make_pause_menu(sfRenderWindow* window, int *x_y)
                 x_y[2] = menu_pause(x_y, window);
                 if (x_y[2] == 2 || x_y[2] == 3)
                     set_Clock_pos(NULL, 1);
-                //check_pause(x_y[2], window);
                 return (x_y[2] + 20);
             }
             else if (event.type == sfEvtClosed)

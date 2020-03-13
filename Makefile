@@ -26,7 +26,7 @@ SRC		=	main.c \
 OBJ		=	$(SRC:.c=.o)
 
 $(NAME)	:	$(OBJ)
-			gcc $(OBJ) -o $(NAME) -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -Wall -Wextra
+			gcc $(OBJ) -o $(NAME) -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -lm -Wall -Wextra
 
 clean	:
 			rm -f $(OBJ)

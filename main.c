@@ -62,16 +62,17 @@ int game(sfRenderWindow* window, sfSprite* bg, en *enem, tow *towe)
     while (sfRenderWindow_isOpen(window)) {
         w_size = sfRenderWindow_getSize(window);
         mous = mouse(window, w_size);
+        enem = fill_en(enem, NULL, 1);
         if (mous >= 22)
             return mous;
-        enem = fill_en(enem, NULL, 1);
-        if (mous >= 6 && mous <= 8)
+        else if (mous >= 6 && mous <= 8)
             towe = place_tower(towe, mous, &towe_nb, window);
         sfRenderWindow_drawSprite(window, bg, NULL);
         draw(window, towe_nb, enem, towe);
         sfRenderWindow_display(window);
         sfRenderWindow_clear(window, sfBlack);
         enem = set_Clock_pos(enem, 0);
+        get_hit(towe, enem, towe_nb, 10);
     }
 }
 

@@ -57,7 +57,7 @@ int touch_menu(sfRenderWindow* window, sfTexture* menu, sfSprite* me)
         sfRenderWindow_drawSprite(window, me, NULL);
         sfRenderWindow_display(window);
         while (sfRenderWindow_pollEvent(window, &event)) {
-            if (event.type == sfEvtMouseButtonPressed 
+            if (event.type == sfEvtMouseButtonPressed
                 && event.type != sfEvtClosed) {
                 x_y[0] = sfMouse_getPositionRenderWindow(window).x;
                 x_y[1] = sfMouse_getPositionRenderWindow(window).y;
