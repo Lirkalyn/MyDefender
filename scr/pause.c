@@ -93,6 +93,8 @@ int make_pause_menu(sfRenderWindow* window, int *x_y)
                 x_y[0] = sfMouse_getPositionRenderWindow(window).x;
                 x_y[1] = sfMouse_getPositionRenderWindow(window).y;
                 x_y[2] = menu_pause(x_y, window);
+                if (x_y[2] == 2 || x_y[2] == 3)
+                    set_Clock_pos(NULL, 1);
                 //check_pause(x_y[2], window);
                 return (x_y[2] + 20);
             }

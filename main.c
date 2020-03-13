@@ -29,15 +29,16 @@ en follow_path(en enem, int i)
     return enem;
 }
 
-en *set_Clock_pos(en *enem)
+en *set_Clock_pos(en *enem, int opt)
 {
     sfClock *clock;
     sfTime time;
     float seconds;
     static int cpt = 0;
 
-    clock = sfClock_create();
-    while (1) {
+    cpt = (opt != 0 && cpt == 1) ? 0 : cpt;
+    clock = (opt == 0) ? sfClock_create() : NULL;
+    while (opt == 0) {
         time = sfClock_getElapsedTime(clock);
         seconds = time.microseconds / 1000000.0;
         if (seconds > 0.085) {
@@ -70,7 +71,7 @@ int game(sfRenderWindow* window, sfSprite* bg, en *enem, tow *towe)
         draw(window, towe_nb, enem, towe);
         sfRenderWindow_display(window);
         sfRenderWindow_clear(window, sfBlack);
-        enem = set_Clock_pos(enem);
+        enem = set_Clock_pos(enem, 0);
     }
 }
 
