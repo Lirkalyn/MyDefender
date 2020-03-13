@@ -47,10 +47,10 @@ int mouse(sfRenderWindow* window, sfVector2u w_size)
     int x_y[3] = {[0 ... 2] = 0};
     sfEvent event;
 
-    if (p == NULL) {
+/*    if (p == NULL) {
         sfRenderWindow_close(window);
         return 0;
-    }
+    }*/
 //    printf("a = %d et b = %d\n", p[1].a, p[1].b);
 //    printf("c = %d et d = %d\n", p[1].c, p[1].d);
     while (sfRenderWindow_pollEvent(window, &event)) {
@@ -62,6 +62,8 @@ int mouse(sfRenderWindow* window, sfVector2u w_size)
         }
         else if (event.type == sfEvtClosed)
             sfRenderWindow_close(window);
+        if (event.type == sfEvtKeyPressed && event.key.code == sfKeySpace)
+            return make_pause_menu(window, x_y);
     }
     return x_y[2];
 }

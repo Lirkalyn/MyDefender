@@ -47,7 +47,7 @@ int menu_pause(int *x_y, sfRenderWindow* window)
     return 0;
 }
 
-void check_pause(int x_y, sfRenderWindow* window)
+/*void check_pause(int x_y, sfRenderWindow* window)
 {
     sfTexture* map = sfTexture_createFromFile("Picture/map (copie).jpg", NULL);
     sfTexture* menu = sfTexture_createFromFile("Picture/Menu.png", NULL);
@@ -68,40 +68,36 @@ void check_pause(int x_y, sfRenderWindow* window)
         rep = touch_menu(window, menu, me);
         start_game(window, map, rep);
     }
+}*/
+
+sfSprite *pa_maker(void)
+{
+    sfTexture* pause = sfTexture_createFromFile("Picture/pause_2.jpg", NULL);
+    sfSprite* pa = sfSprite_create();
+
+    sfSprite_setTexture(pa, pause, sfTrue);
+    return pa;
 }
 
-void make_pause_menu(sfRenderWindow* window, int *x_y)
+int make_pause_menu(sfRenderWindow* window, int *x_y)
 {
-    sfTexture* pause = sfTexture_createFromFile("Picture/pause.jpg", NULL);
-    sfSprite* pa = sfSprite_create();
+    sfSprite* pa = pa_maker();
     sfEvent event;
 
     while (x_y[2] == 0 && sfRenderWindow_isOpen(window)) {
-        sfSprite_setTexture(pa, pause, sfTrue);
         sfRenderWindow_drawSprite(window, pa, NULL);
         sfRenderWindow_display(window);
         while (sfRenderWindow_pollEvent(window, &event)) {
-            if (event.type == sfEvtMouseButtonPressed 
+            if (event.type == sfEvtMouseButtonPressed
                 && event.type != sfEvtClosed) {
                 x_y[0] = sfMouse_getPositionRenderWindow(window).x;
                 x_y[1] = sfMouse_getPositionRenderWindow(window).y;
                 x_y[2] = menu_pause(x_y, window);
-                check_pause(x_y[2], window);
+                //check_pause(x_y[2], window);
+                return (x_y[2] + 20);
             }
             else if (event.type == sfEvtClosed)
                 sfRenderWindow_close(window);
-        }
-    }
-}
-
-int pause_menu(sfRenderWindow* window)
-{
-    sfEvent event;
-    int x_y[3] = {[0 ... 2] = 0};
-
-    while (sfRenderWindow_pollEvent(window, &event)) {
-        if (event.type == sfEvtKeyPressed && event.key.code == sfKeySpace) {
-            make_pause_menu(window, x_y);
         }
     }
 }

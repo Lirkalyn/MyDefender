@@ -42,3 +42,16 @@ int set_Clock_ani(sfIntRect rect)
         }
     }
 }
+
+
+int pause_menu(sfRenderWindow* window)
+{
+    sfEvent event;
+    int x_y[3] = {[0 ... 2] = 0};
+
+    while (sfRenderWindow_pollEvent(window, &event)) {
+        if (event.type == sfEvtKeyPressed && event.key.code == sfKeySpace) {
+            make_pause_menu(window, x_y);
+        }
+    }
+}
