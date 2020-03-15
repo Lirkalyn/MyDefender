@@ -9,7 +9,7 @@
 
 sfSprite *bullet_maker(sfVector2f pos)
 {
-    sfTexture* bul = sfTexture_createFromFile("Picture/tower_b_3.png", NULL);
+    sfTexture* bul = sfTexture_createFromFile("Picture/tower_b_5.png", NULL);
     sfSprite *rsl = sfSprite_create();
 
     sfSprite_setTexture(rsl, bul, sfTrue);

@@ -58,8 +58,6 @@ int game(sfRenderWindow* window, sfSprite* bg, en *enem, tow *towe)
     sfVector2u w_size;
     int mous = 0;
     int *nb = fill_nb();
-    //printf("%d et %d\n", nb[0], nb[1]);
-    //int towe_nb = 3;
 
     while (sfRenderWindow_isOpen(window)) {
         w_size = sfRenderWindow_getSize(window);
@@ -71,8 +69,6 @@ int game(sfRenderWindow* window, sfSprite* bg, en *enem, tow *towe)
             towe = place_tower(towe, mous, &nb[0], window);
         sfRenderWindow_drawSprite(window, bg, NULL);
         draw(window, nb[0], enem, towe);
-/*        sfRenderWindow_display(window);
-        sfRenderWindow_clear(window, sfBlack);*/
         enem = set_Clock_pos(enem, 0);
         get_hit(towe, enem, nb, window);
         sfRenderWindow_display(window);
@@ -108,8 +104,7 @@ int main(int argc, char *argv[])
 {
     sfVideoMode mode = {1920, 1080, 32};
     sfRenderWindow* window;
-//    sfTexture* map = sfTexture_createFromFile("Picture/map.jpg", NULL);
-    sfTexture* map = sfTexture_createFromFile("Picture/map (copie).jpg", NULL);
+    sfTexture* map = sfTexture_createFromFile("Picture/map.jpg", NULL);
     sfTexture* menu = sfTexture_createFromFile("Picture/Menu.png", NULL);
     sfSprite* me = sfSprite_create();
     sfSprite* bg = sfSprite_create();

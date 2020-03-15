@@ -72,22 +72,15 @@ int shoot(int *xy, tow towe, en enem, sfRenderWindow* window)
     sfTime time;
     float seconds;
     sfSprite *bullet = bullet_maker(enem.i);
-//    sfVector2f pos = towe.pos;
-//    sfSprite *bullet = bullet_maker(pos);
 
     clock = sfClock_create();
     while (1) {
         time = sfClock_getElapsedTime(clock);
         seconds = time.microseconds / 1000000.0;
         if (seconds > 0.001) {
-//            pos.x += xy[0];
-//            pos.y += xy[1];
-//            bullet = bullet_moover(bullet, pos);
-//            sfRenderWindow_display(window);
-//            sfRenderWindow_clear(window, sfBlack);
-            sfRenderWindow_drawSprite(window, bullet, NULL);
+            if (enem.lp > 0)
+                sfRenderWindow_drawSprite(window, bullet, NULL);
             sfClock_restart(clock);
-//            if (pos.x >= enem.i.x || pos.y >= enem.i.y)
                 return ((towe.damage) * -1);
         }
     }
