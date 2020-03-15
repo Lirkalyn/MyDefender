@@ -91,7 +91,7 @@ int start_game(sfRenderWindow* window, sfSprite *bg, int rep)
     if (over == 22)
         return start_game(window, bg, rep);
     sfRenderWindow_destroy(window);
-    if (over == 23)
+    if (over == 23 || over == 24)
         return over;
     }
     else if (rep == 2)

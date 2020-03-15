@@ -7,9 +7,18 @@
 
 #include "../include/my.h"
 
+struct Pos *fill_pause_2(sfVector2u w_size, struct Pos *p)
+{
+    p[3].a = (804 * w_size.x)/1920;
+    p[3].b = (1199 * w_size.x)/1920;
+    p[3].c = (800 * w_size.y)/1008;
+    p[3].d = (920 * w_size.y)/1008;
+    return p;
+}
+
 struct Pos *fill_pause(sfVector2u w_size)
 {
-    struct Pos *p = malloc(8 * sizeof(struct Pos));
+    struct Pos *p = malloc(4 * sizeof(struct Pos));
 
     if (p == NULL)
         return NULL;
@@ -25,6 +34,7 @@ struct Pos *fill_pause(sfVector2u w_size)
     p[2].b = (1199 * w_size.x)/1920;
     p[2].c = (633 * w_size.y)/1008;
     p[2].d = (781 * w_size.y)/1008;
+    p = fill_pause_2(w_size, p);
     return p;
 }
 
@@ -44,12 +54,15 @@ int menu_pause(int *x_y, sfRenderWindow* window)
     if ((x_y[0] >= p[2].a && x_y[0] <= p[2].b)
             && (x_y[1] >= p[2].c && x_y[1] <= p[2].d))
         return 3;
+    if ((x_y[0] >= p[3].a && x_y[0] <= p[3].b)
+            && (x_y[1] >= p[3].c && x_y[1] <= p[3].d))
+        return 4;
     return 0;
 }
 
 sfSprite *pa_maker(void)
 {
-    sfTexture* pause = sfTexture_createFromFile("Picture/pause_2.jpg", NULL);
+    sfTexture* pause = sfTexture_createFromFile("Picture/pause_3.png", NULL);
     sfSprite* pa = sfSprite_create();
 
     sfSprite_setTexture(pa, pause, sfTrue);
