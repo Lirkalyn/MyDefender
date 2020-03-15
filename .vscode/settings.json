@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "racket": "racket",
-        "my.h": "c",
-        "random": "c",
-        "sstream": "c",
-        "cmath": "c"
-    }
-}
