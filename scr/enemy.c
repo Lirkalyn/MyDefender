@@ -16,7 +16,7 @@ en *fill_en(en *enem, sfTexture* enemy, int opt)
             sfSprite_setTexture(enem[j].en, enemy, sfTrue);
             enem[j].rect_en = set_rect_en(enem[j].rect_en);
             enem[j].i = set_i(enem[j].i, j);
-            enem[j].lp = 20;
+            enem[j].lp = 750;
         }
     }
     if (opt == 1)

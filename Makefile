@@ -19,6 +19,7 @@ SRC		=	main.c \
 			scr/tower.c \
 			scr/tower_2.c \
 			scr/tower_3.c \
+			scr/tower_4.c \
 			scr/menu.c \
 			scr/draw.c \
 			scr/pause.c

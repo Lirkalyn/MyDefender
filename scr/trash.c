@@ -55,3 +55,35 @@ int pause_menu(sfRenderWindow* window)
         }
     }
 }
+
+
+
+
+
+
+void get_hit(tow *towe, en *enem, int nb_tower, int nb_enemy)
+{
+    float radius;
+    double rsl = 0.0;
+    int exy[2];
+    int enem_x = 0;
+    int enem_y = 0;
+    int towe_x = 0;
+    int towe_y = 0;
+
+    for (int i = 3; i < nb_tower; i++) {
+        radius = sfCircleShape_getRadius(towe[i].shape);
+        towe_x = (towe[i].which == 1) ? (towe[i].pos.x + 35) : towe_x;
+        towe_y = (towe[i].which == 1) ? (towe[i].pos.y + 105) : towe_y;
+        towe_x = (towe[i].which == 2) ? (towe[i].pos.x + 45) : towe_x;
+        towe_y = (towe[i].which == 2) ? (towe[i].pos.y + 105) : towe_y;
+        for (int j = 0; j < nb_enemy; j++) {
+            enem_x = sfSprite_getPosition(enem[j].en).x;
+            enem_y = sfSprite_getPosition(enem[j].en).y;
+            rsl = sqrt(pow((enem_x - towe_x), 2) + pow((enem_y - towe_y), 2));
+//            printf("i = %d et j = %d : e_x = %d et e_y = %d : t_x = %d et t_y = %d : et rad = %f et %f\n", i , j, enem_x, enem_y, towe_x, towe_y, radius, rsl);
+        }
+//        printf("%d\n", towe[i].which);
+//        printf("\n");
+    }
+}

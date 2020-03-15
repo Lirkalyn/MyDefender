@@ -59,3 +59,12 @@ struct Pos *fill(sfVector2u w_size)
     p = fill_2(w_size, p);
     return p;
 }
+
+int *fill_nb(void)
+{
+    int *nb = malloc(2 * sizeof(int));
+
+    nb[0] = 3;
+    nb[1] = 10;
+    return nb;
+}

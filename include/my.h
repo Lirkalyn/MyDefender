@@ -62,6 +62,9 @@ tow *hit_box_maker(tow *towe, int *mem);
 void draw(sfRenderWindow* window, int towe_nb, en *enem, tow *towe);
 int pause_menu(sfRenderWindow* window);
 int make_pause_menu(sfRenderWindow* window, int *x_y);
-void get_hit(tow *towe, en *enem, int nb_tower, int nb_enemy);
+void get_hit(tow *towe, en *enem, int *nb, sfRenderWindow* window);
+int *fill_nb(void);
+sfSprite *bullet_maker(sfVector2f pos);
+sfSprite *bullet_moover(sfSprite *spr, sfVector2f pos);
 
 #endif

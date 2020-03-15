@@ -57,7 +57,9 @@ int game(sfRenderWindow* window, sfSprite* bg, en *enem, tow *towe)
 {
     sfVector2u w_size;
     int mous = 0;
-    int towe_nb = 3;
+    int *nb = fill_nb();
+    //printf("%d et %d\n", nb[0], nb[1]);
+    //int towe_nb = 3;
 
     while (sfRenderWindow_isOpen(window)) {
         w_size = sfRenderWindow_getSize(window);
@@ -66,13 +68,15 @@ int game(sfRenderWindow* window, sfSprite* bg, en *enem, tow *towe)
         if (mous >= 22)
             return mous;
         else if (mous >= 6 && mous <= 8)
-            towe = place_tower(towe, mous, &towe_nb, window);
+            towe = place_tower(towe, mous, &nb[0], window);
         sfRenderWindow_drawSprite(window, bg, NULL);
-        draw(window, towe_nb, enem, towe);
+        draw(window, nb[0], enem, towe);
+/*        sfRenderWindow_display(window);
+        sfRenderWindow_clear(window, sfBlack);*/
+        enem = set_Clock_pos(enem, 0);
+        get_hit(towe, enem, nb, window);
         sfRenderWindow_display(window);
         sfRenderWindow_clear(window, sfBlack);
-        enem = set_Clock_pos(enem, 0);
-        get_hit(towe, enem, towe_nb, 10);
     }
 }
 

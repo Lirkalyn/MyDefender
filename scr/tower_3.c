@@ -66,35 +66,53 @@ tow *hit_box_maker(tow *towe, int *mem)
     return towe;
 }
 
-void get_hit(tow *towe, en *enem, int nb_tower, int nb_enemy)
+int shoot(int *xy, tow towe, en enem, sfRenderWindow* window)
 {
-    float radius;
-    double rsl = 0.0;
-    sfVector2f enem_x_y;
-    int enem_x = 0;
-    int enem_y = 0;
-    int towe_x = 0;
-    int towe_y = 0;
+    sfClock *clock;
+    sfTime time;
+    float seconds;
+    sfSprite *bullet = bullet_maker(enem.i);
+//    sfVector2f pos = towe.pos;
+//    sfSprite *bullet = bullet_maker(pos);
 
-    for (int i = 3; i < nb_tower; i++) {
-        radius = sfCircleShape_getRadius(towe[i].shape);
-        if (towe[i].which == 1) {
-        towe_x = (towe[i].pos.x + 35);
-        towe_y = (towe[i].pos.y + 105);
+    clock = sfClock_create();
+    while (1) {
+        time = sfClock_getElapsedTime(clock);
+        seconds = time.microseconds / 1000000.0;
+        if (seconds > 0.001) {
+//            pos.x += xy[0];
+//            pos.y += xy[1];
+//            bullet = bullet_moover(bullet, pos);
+//            sfRenderWindow_display(window);
+//            sfRenderWindow_clear(window, sfBlack);
+            sfRenderWindow_drawSprite(window, bullet, NULL);
+            sfClock_restart(clock);
+//            if (pos.x >= enem.i.x || pos.y >= enem.i.y)
+                return ((towe.damage) * -1);
         }
-        else if (towe[i].which == 2) {
-        towe_x = (towe[i].pos.x + 45);
-        towe_y = (towe[i].pos.y + 105);
+    }
+}
+
+void get_hit(tow *towe, en *enem, int *nb, sfRenderWindow* window)
+{
+    double rsl = 0.0;
+    int ene[2] = {[0 ... 1] = 0};
+    int tow[2] = {[0 ... 1] = 0};
+    int xy[2] = {[0 ... 1] = 0};
+
+    for (int i = 3; i < nb[0]; i++) {
+        tow[0] = (towe[i].which == 1) ? (towe[i].pos.x + 35) : tow[0];
+        tow[1] = (towe[i].which == 1) ? (towe[i].pos.y + 105) : tow[1];
+        tow[0] = (towe[i].which == 2) ? (towe[i].pos.x + 45) : tow[0];
+        tow[1] = (towe[i].which == 2) ? (towe[i].pos.y + 105) : tow[1];
+        for (int j = 0; j < nb[1]; j++) {
+            ene[0] = sfSprite_getPosition(enem[j].en).x;
+            ene[1] = sfSprite_getPosition(enem[j].en).y;
+            rsl = sqrt(pow((ene[0] - tow[0]), 2) + pow((ene[1] - tow[1]), 2));
+            xy[0] = (ene[0] - tow[0]);
+            xy[1] = (ene[1] - tow[1]);
+            if (rsl <= sfCircleShape_getRadius(towe[i].shape))
+                enem[j].lp += shoot(xy, towe[i], enem[j], window);
         }
-        for (int j = 0; j < nb_enemy; j++) {
-            enem_x_y = sfSprite_getPosition(enem[j].en);
-            enem_x = enem_x_y.x;
-            enem_y = enem_x_y.y;
-            //rsl = sqrt(pow((towe_x - enem_x), 2) + pow((towe_y - enem_y), 2));
-            rsl = sqrt(pow((enem_x - towe_x), 2) + pow((enem_y - towe_y), 2));
-//            printf("i = %d et j = %d : e_x = %d et e_y = %d : t_x = %d et t_y = %d : et rad = %f et %f\n", i , j, enem_x, enem_y, towe_x, towe_y, radius, rsl);
-        }
-//        printf("%d\n", towe[i].which);
-//        printf("\n");
     }
 }

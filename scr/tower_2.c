@@ -70,7 +70,7 @@ tow *place_tower(tow *towe, int tow, int *towe_nb, sfRenderWindow* window)
             towe = place_tower_filler(towe, tow, mous, towe_nb);
             return over(towe, clock);
         }
-        else if (seconds > 1.0)
+        else if (seconds > 2.0)
             return over(towe, clock);
     }
 }
