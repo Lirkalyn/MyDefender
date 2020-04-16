@@ -7,9 +7,9 @@
 
 #include "../include/my.h"
 
-struct Pos *fill_menu(sfVector2u w_size)
+pos *fill_menu(sfVector2u w_size)
 {
-    struct Pos *p = malloc(8 * sizeof(struct Pos));
+    pos *p = malloc(8 * sizeof(pos));
 
     if (p == NULL)
         return NULL;
@@ -31,7 +31,7 @@ struct Pos *fill_menu(sfVector2u w_size)
 int menu_int(int *x_y, sfRenderWindow* window)
 {
     sfVector2u w_size;
-    struct Pos *p;
+    pos *p;
 
     w_size = sfRenderWindow_getSize(window);
     p = fill_menu(w_size);

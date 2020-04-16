@@ -7,7 +7,7 @@
 
 #include "../include/my.h"
 
-struct Pos *fill_3(sfVector2u w_size, struct Pos *p)
+pos *fill_3(sfVector2u w_size, pos *p)
 {
     p[7].a = (1673 * w_size.x)/1920;
     p[7].b = (1784 * w_size.x)/1920;
@@ -16,7 +16,7 @@ struct Pos *fill_3(sfVector2u w_size, struct Pos *p)
     return p;
 }
 
-struct Pos *fill_2(sfVector2u w_size, struct Pos *p)
+pos *fill_2(sfVector2u w_size, pos *p)
 {
     p[3].a = (991 * w_size.x)/1920;
     p[3].b = (1120 * w_size.x)/1920;
@@ -38,9 +38,9 @@ struct Pos *fill_2(sfVector2u w_size, struct Pos *p)
     return p;
 }
 
-struct Pos *fill(sfVector2u w_size)
+pos *fill(sfVector2u w_size)
 {
-    struct Pos *p = malloc(8 * sizeof(struct Pos));
+    pos *p = malloc(8 * sizeof(pos));
 
     if (p == NULL)
         return NULL;

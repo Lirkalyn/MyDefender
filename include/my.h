@@ -15,12 +15,12 @@
 #include <unistd.h>
 #include <math.h>
 
-struct Pos {
+typedef struct Pos {
     int a;
     int b;
     int c;
     int d;
-};
+} pos;
 
 typedef struct En {
     sfSprite* en;
@@ -47,9 +47,8 @@ int my_put_nbr(int nb);
 int str_cmp(char const *s1, char const *s2);
 sfIntRect set_rect_en(sfIntRect rect_en);
 sfVector2f set_i(sfVector2f i, int j);
-//en *set_Clock_ani(en *enem);
 int mouse(sfRenderWindow* window, sfVector2u w_size);
-struct Pos *fill(sfVector2u w_size);
+pos *fill(sfVector2u w_size);
 en *fill_en(en *enem, sfTexture* enemy, int opt);
 en *set_Clock_pos(en *enem, int opt);
 tow *fill_tower(tow *towe);
@@ -66,5 +65,7 @@ void get_hit(tow *towe, en *enem, int *nb, sfRenderWindow* window);
 int *fill_nb(void);
 sfSprite *bullet_maker(sfVector2f pos);
 sfSprite *bullet_moover(sfSprite *spr, sfVector2f pos);
+int main_2(int argc, char *argv[], char *envp[]);
+int start_game(sfRenderWindow* window, sfSprite *bg, int rep);
 
 #endif

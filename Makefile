@@ -11,6 +11,7 @@
 NAME	=	my_defender
 
 SRC		=	main.c \
+			main_2.c \
 			scr/display.c \
 			scr/cmp.c \
 			scr/interaction.c \

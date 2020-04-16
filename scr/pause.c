@@ -7,7 +7,7 @@
 
 #include "../include/my.h"
 
-struct Pos *fill_pause_2(sfVector2u w_size, struct Pos *p)
+pos *fill_pause_2(sfVector2u w_size, pos *p)
 {
     p[3].a = (804 * w_size.x)/1920;
     p[3].b = (1199 * w_size.x)/1920;
@@ -16,9 +16,9 @@ struct Pos *fill_pause_2(sfVector2u w_size, struct Pos *p)
     return p;
 }
 
-struct Pos *fill_pause(sfVector2u w_size)
+pos *fill_pause(sfVector2u w_size)
 {
-    struct Pos *p = malloc(4 * sizeof(struct Pos));
+    pos *p = malloc(4 * sizeof(pos));
 
     if (p == NULL)
         return NULL;
@@ -41,7 +41,7 @@ struct Pos *fill_pause(sfVector2u w_size)
 int menu_pause(int *x_y, sfRenderWindow* window)
 {
     sfVector2u w_size;
-    struct Pos *p;
+    pos *p;
 
     w_size = sfRenderWindow_getSize(window);
     p = fill_pause(w_size);

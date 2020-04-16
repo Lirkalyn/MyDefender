@@ -7,7 +7,7 @@
 
 #include "../include/my.h"
 
-int interaction_2(int *x_y, struct Pos *p)
+int interaction_2(int *x_y, pos *p)
 {
     if ((x_y[0] >= p[6].a && x_y[0] <= p[6].b)
             && (x_y[1] >= p[6].c && x_y[1] <= p[6].d))
@@ -18,7 +18,7 @@ int interaction_2(int *x_y, struct Pos *p)
     return 0;
 }
 
-int interaction(int *x_y, struct Pos *p)
+int interaction(int *x_y, pos *p)
 {
     if ((x_y[0] >= p[0].a && x_y[0] <= p[0].b)
             && (x_y[1] >= p[0].c && x_y[1] <= p[0].d))
@@ -43,7 +43,7 @@ int interaction(int *x_y, struct Pos *p)
 
 int mouse(sfRenderWindow* window, sfVector2u w_size)
 {
-    struct Pos *p = fill(w_size);
+    pos *p = fill(w_size);
     int x_y[3] = {[0 ... 2] = 0};
     sfEvent event;
 
