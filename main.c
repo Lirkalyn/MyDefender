@@ -100,7 +100,7 @@ int start_game(sfRenderWindow* window, sfSprite *bg, int rep)
         sfRenderWindow_close(window);
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char *argv[], char *envp[])
 {
     sfVideoMode mode = {1920, 1080, 32};
     sfRenderWindow* window;
@@ -110,11 +110,13 @@ int main(int argc, char *argv[])
     sfSprite* bg = sfSprite_create();
     int rep;
 
+    if (envp[0] == NULL)
+        return 84;
     window = sfRenderWindow_create(mode, "defender", sfResize | sfClose, NULL);
     rep = touch_menu(window, menu, me);
     sfSprite_setTexture(bg, map, sfTrue);
     if (start_game(window, bg, rep) == 23)
-        return main(argc, argv);
+        return main(argc, argv, envp);
     else
         return 0;
 }
